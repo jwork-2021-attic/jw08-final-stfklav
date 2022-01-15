@@ -1,0 +1,43 @@
+@startuml world
+
+World o--Creature 
+enum Tile{
+    FLOOR
+    WALL
+    BOUNDS
+}
+World o-- Tile
+World --> WorldBuilder
+
+
+Creature ..> CreatureAI
+enum CreatureType{
+    PLAYER
+    MONSTER
+    FUNGUS
+    MEDICINE
+    AMPLIFIER
+}
+Creature ..> CreatureType
+Creature --> CreatureFactory
+Tile <- Creature
+
+CreatureAI <|-- PlayerAI
+CreatureAI <|-- MonsterAI
+CreatureAI <|-- FungusAI
+CreatureAI <|-- MedicineAI
+CreatureAI <|-- AmplifierAI
+@enduml
+
+
+@startuml screen
+
+Interface Screen
+
+Screen <|.. RestartScreen
+Screen <|.. PlayScreen
+RestartScreen <|-- StartScreen
+RestartScreen <|-- WinScreen
+RestartScreen <|-- LoseScreen
+
+@enduml
